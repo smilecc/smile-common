@@ -59,7 +59,7 @@ class MakeModelCommand extends Command
         }
 
         $repoStub = file_get_contents(__DIR__ . '/../Stubs/repo.stub');
-        $repoStub = str_replace('%NAMESPACE%', "App\Storage\{$studlyModule}\Repo", $repoStub);
+        $repoStub = str_replace('%NAMESPACE%', "App\Storage\\{$studlyModule}\\Repo", $repoStub);
         $repoStub = str_replace('%CLASS%', "{$studlyRealTable}Repo", $repoStub);
         $repoFilePath = "{$repoDir}/{$studlyRealTable}Repo.php";
 
