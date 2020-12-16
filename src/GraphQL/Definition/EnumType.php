@@ -45,6 +45,9 @@ abstract class EnumType extends GraphQLEnumType
     {
         $reflectionClass = new ReflectionClass($classPath);
         $constants = $reflectionClass->getConstants();
+        $parentConstants = $reflectionClass->getParentClass()->getConstants();
+
+        $constants = array_filter($constants, fn($key) => !array_key_exists($key, $parentConstants), ARRAY_FILTER_USE_KEY);
 
         return array_map(function ($value) use ($classPath) {
             /** @noinspection PhpUndefinedMethodInspection */
@@ -77,9 +80,7 @@ abstract class EnumType extends GraphQLEnumType
         $name = strtolower(substr($name, 3));
         $class = get_called_class();
 
-        var_dump($name);
         $message = ConstantsCollector::getValue($class, $code, $name);
-        var_dump($message);
 
         array_shift($arguments);
 
