@@ -68,7 +68,7 @@ abstract class ObjectType extends GraphQLObjectType
                             case 'value':
                             case 'values':
                                 $invokeArgs[$i] = $val;
-                                continue;
+                                continue 2;
                             case 'arg':
                             case 'args':
                             case 'arguments':
@@ -78,18 +78,18 @@ abstract class ObjectType extends GraphQLObjectType
                                     if ($argClass->getParentClass()->getName() == BaseEntity::class) {
                                         $argClassName = $argClass->getName();
                                         $invokeArgs[$i] = new $argClassName($args);
-                                        continue;
+                                        continue 2;
                                     }
                                 }
                                 $invokeArgs[$i] = $args;
-                                continue;
+                                continue 2;
                             case 'context':
                                 $invokeArgs[$i] = $context;
-                                continue;
+                                continue 2;
                             case 'resolveInfo':
                             case 'info':
                                 $invokeArgs[$i] = $info;
-                                continue;
+                                continue 2;
                         }
 
                         $invokeArgs[$i] = $defaultArgs[$i];

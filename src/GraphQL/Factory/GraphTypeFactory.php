@@ -287,20 +287,4 @@ class GraphTypeFactory
             'description' => $description,
         ];
     }
-
-    public function fastConstEnum(string $constClassPath, string $description = '', $defaultValue = null, $args = [])
-    {
-        $type = $this->get($constClassPath, '', [
-            'fromConst' => $constClassPath,
-        ]);
-        return $this->fast($type, $description, $defaultValue, $args);
-    }
-
-    public function fastNullableConstEnum(string $constClassPath, string $description = '', $defaultValue = null, $args = [])
-    {
-        $type = $this->get($constClassPath, '', [
-            'fromConst' => $constClassPath,
-        ]);
-        return $this->fastNullable($type, $description, $defaultValue, $args);
-    }
 }
