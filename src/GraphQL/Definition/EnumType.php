@@ -57,7 +57,7 @@ abstract class EnumType extends GraphQLEnumType
 
     public function fromCurrent()
     {
-        return $this->fromConst(self::class);
+        return $this->fromConst(get_class($this));
     }
 
     /**
