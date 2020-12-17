@@ -80,7 +80,7 @@ class GraphTypeFactory
                 'fields' => [
                     'items' => $this->listOf($type),
                 ],
-            ]), $description, array_merge([
+            ]), $description, null, array_merge([
                 'page' => $this->fastInt('页码'),
                 'pageSize' => $this->fastNullableInt('每页数量', 20),
             ], $args)
@@ -250,14 +250,14 @@ class GraphTypeFactory
     public function fastResult(string $description = '', $args = [])
     {
         return $this->fast(
-            $this->result(), $description, $args
+            $this->result(), $description, null, $args
         );
     }
 
     public function fastResultWithFields(string $name, string $description, array $args = [], array $fields = [])
     {
         return $this->fast(
-            $this->resultWithFields($name, $fields), $description, $args
+            $this->resultWithFields($name, $fields), $description, null, $args
         );
     }
 
