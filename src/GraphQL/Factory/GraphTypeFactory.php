@@ -5,12 +5,12 @@ namespace Smile\Common\GraphQL\Factory;
 
 use GraphQL\Type\Definition\ListOfType;
 use GraphQL\Type\Definition\NonNull;
-use GraphQL\Type\Definition\ObjectType;
 use GraphQL\Type\Definition\Type;
 use Hyperf\Contract\ContainerInterface;
 use Hyperf\Di\Annotation\Inject;
 use Smile\Common\GraphQL\Definition\CommonType\TMutationResult;
 use Smile\Common\GraphQL\Definition\CommonType\TPaginator;
+use Smile\Common\GraphQL\Definition\ObjectType;
 use Smile\Common\GraphQL\Definition\PriceType;
 
 class GraphTypeFactory
@@ -27,7 +27,7 @@ class GraphTypeFactory
 
     public function get(string $class, string $name = '', array $params = [])
     {
-        $paramsHash = count($params) > 0 ? md5(serialize($params)) : '';
+        $paramsHash = count($params) > 0 ? md5(json_encode($params)) : '';
         $key = "__GRAPH_{$class}_{$name}_{$paramsHash}";
         if ($this->container->has($key)) {
             return $this->container->get($key);
