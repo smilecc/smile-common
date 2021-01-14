@@ -26,7 +26,7 @@ class CommonExceptionHandler extends ExceptionHandler
     public function handle(Throwable $throwable, ResponseInterface $response)
     {
         $hyperfResponse = CsrfMiddleware::addCsrfHeaders(new Response($response));
-        $userId = SessionUtil::getUserId();
+        $userId = SessionUtil::getUserId(true);
 
         $logData = [
             'exception' => get_class($throwable),
