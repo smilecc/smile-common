@@ -8,11 +8,13 @@ use GraphQL\GraphQL;
 use GraphQL\Type\Schema;
 use Hyperf\Contract\ConfigInterface;
 use Hyperf\HttpServer\Annotation\Controller;
+use Hyperf\HttpServer\Annotation\Middleware;
 use Hyperf\HttpServer\Annotation\RequestMapping;
 use GraphQL\Error\Error;
 use Psr\Http\Message\ResponseInterface;
 use Smile\Common\GraphQL\Factory\GraphTypeFactory;
 use Smile\Common\Support\Entity\Result;
+use Smile\Common\Support\Middleware\LoginMiddleware;
 use Smile\Common\Support\Parent\BaseController;
 
 /**
@@ -23,6 +25,7 @@ use Smile\Common\Support\Parent\BaseController;
 class GraphController extends BaseController
 {
     /**
+     * @Middleware(LoginMiddleware::class)
      * @RequestMapping(path="/api/graph/[{action}]")
      * @param GraphTypeFactory $typeFactory
      * @param ConfigInterface $config
